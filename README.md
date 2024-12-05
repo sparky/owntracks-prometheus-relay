@@ -62,3 +62,10 @@ If everything is correct, you should enable the socket permanently:
 ```
 sudo systemctl enable uwsgi@owntracks-prometheus-relay.socket
 ```
+
+Grafana
+-------
+
+An example grafana dashboard can be found in the `examples` directory.
+
+![Grafana Dashboard](examples/grafana-dashboard.png)
