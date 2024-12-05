@@ -107,7 +107,12 @@ sub record_location_only
 		deg2rad( $first->{lon} ), deg2rad( 90 - $first->{lat} ),
 		deg2rad( $last->{lon} ), deg2rad( 90 - $last->{lat} ),
 	6378 ) // 0;
-	$distance_diff = 0 unless $distance_diff > 0.04;
+
+	# FIXME: The GPS coordinates will randomly fluctuate even when not
+	# moving. This will accumulate as distance travelled. We want to filter
+	# it out, but we do not want to accidentally remove slow moving speeds.
+	# $distance_diff = 0 unless $distance_diff > 0.04;
+
 	$last->{distance} = $first->{distance} + $distance_diff;
 
 	my $points = POSIX::ceil( $time_diff / INTERPOLATION_TIME_MAX );
